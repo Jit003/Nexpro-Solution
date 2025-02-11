@@ -14,7 +14,7 @@ class LeadsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        'Leads List',
+        'Leads List ',
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
