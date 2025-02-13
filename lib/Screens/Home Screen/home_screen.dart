@@ -10,24 +10,12 @@ import '../../Widgets/text_widget.dart';
 class LeadsScreen extends StatelessWidget {
   final LeadsController leadsController = Get.put(LeadsController());
   final AuthController authController = Get.put(AuthController());
-  final List<Color> cardColors = [
-    Colors.orange,
-    Colors.blue,
-    Colors.green,
-    Colors.purple,
-    Colors.red,
-    Colors.teal,
-    Colors.pink,
-    Colors.cyan,
-    Colors.amber,
-    Colors.indigo,
-  ];
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-
       appBar: CustomAppBar(
         'Leads List',
         actions: [
@@ -49,10 +37,10 @@ class LeadsScreen extends StatelessWidget {
         return ListView.builder(
           itemCount: leadsController.leadsList.length,
           itemBuilder: (context, index) {
-            Leads lead = leadsController.leadsList[index];
+            Leads lead = leadsController.leadsList.reversed.toList()[index];
             return Card(
               color: const Color.fromRGBO(17,79,143, 1),
-              margin: const EdgeInsets.all(8.0),
+              margin: const EdgeInsets.all(7.0),
               child: ListTile(
                 onTap: (){
                   Get.to(LeadDetails(lead: lead,));
@@ -61,10 +49,7 @@ class LeadsScreen extends StatelessWidget {
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextWidget("Company: ${lead.companyName ?? 'N/A'}"),
                     TextWidget("Email: ${lead.email ?? 'N/A'}"),
-                    TextWidget("Service: ${lead.service ?? 'N/A'}"),
-                    TextWidget("Project Details: ${lead.projectDetails ?? 'N/A'}"),
                   ],
                 ),
               ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "65251229150",
+    "project_id": "raina-7ee0c",
+    "storage_bucket": "raina-7ee0c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65251229150:android:826dba0fb35cd451bd314f",
+        "android_client_info": {
+          "package_name": "com.example.nexpro_solution"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCw2FcuNFZ99BOojT0B5I4kW2LYqbEws2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nexpro_solution/Widgets/appbar.dart';
 import '../../Model/leads_model.dart';
-import 'package:get/get.dart';
 
 class LeadDetails extends StatelessWidget {
   final Leads lead; // Receive lead data
