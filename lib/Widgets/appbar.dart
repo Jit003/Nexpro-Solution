@@ -6,7 +6,7 @@ PreferredSizeWidget CustomAppBar(
     }) {
   return AppBar(
     iconTheme: const IconThemeData(color: Colors.white),
-    backgroundColor: const Color.fromRGBO(5, 21, 56, 1),
+    backgroundColor: Color.fromRGBO(30, 114, 186,1),
     title: Text(
       text,
       style: const TextStyle(
