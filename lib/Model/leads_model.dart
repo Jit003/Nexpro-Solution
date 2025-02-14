@@ -25,6 +25,8 @@ class Leads {
   int? id;
   String? name;
   String? companyName;
+  String? mobileNumber;
+  String? countryName;
   String? email;
   String? service;
   String? projectDetails;
@@ -35,6 +37,8 @@ class Leads {
       {this.id,
         this.name,
         this.companyName,
+        this.mobileNumber,
+        this.countryName,
         this.email,
         this.service,
         this.projectDetails,
@@ -45,6 +49,8 @@ class Leads {
     id = json['id'];
     name = json['name'];
     companyName = json['company_name'];
+    mobileNumber = json['mobile_number'];
+    countryName = json['country_name'];
     email = json['email'];
     service = json['service'];
     projectDetails = json['project_details'];
@@ -57,6 +63,8 @@ class Leads {
     data['id'] = this.id;
     data['name'] = this.name;
     data['company_name'] = this.companyName;
+    data['mobile_number'] = this.mobileNumber;
+    data['country_name'] = this.countryName;
     data['email'] = this.email;
     data['service'] = this.service;
     data['project_details'] = this.projectDetails;

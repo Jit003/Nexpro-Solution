@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../Api Services/api_helper.dart';
 import '../Model/leads_model.dart';
 import '../Services/notification_services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LeadsController extends GetxController {
   var isLoading = false.obs;
@@ -32,15 +33,6 @@ class LeadsController extends GetxController {
         NotificationService.showNotification(
           "New Leads Available",
           "$newLeadsCount new leads have been received!",
-        );
-
-        // ✅ Show GetX Snackbar
-        Get.snackbar(
-          "Update",
-          "$newLeadsCount new leads added!",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Get.theme.primaryColor,
-          colorText: Get.theme.scaffoldBackgroundColor,
         );
       }
 
@@ -87,5 +79,15 @@ class LeadsController extends GetxController {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print("User clicked on a notification!");
     });
+  }
+  /// Make a phone call
+  Future<void> makeCall(String phoneNumber) async {
+    final Uri callUri = Uri(scheme: "tel", path: phoneNumber);
+
+    if (await canLaunchUrl(callUri)) {
+      await launchUrl(callUri);
+    } else {
+      Get.snackbar("Error", "Could not launch call",);
+    }
   }
 }

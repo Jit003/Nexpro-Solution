@@ -5,13 +5,9 @@ import 'package:nexpro_solution/Screens/Home%20Screen/lead_details.dart';
 import '../../Controller/leads_controller.dart';
 import '../../Model/leads_model.dart';
 import '../../Widgets/appbar.dart';
-import '../../Widgets/text_widget.dart';
-
 class LeadsScreen extends StatelessWidget {
   final LeadsController leadsController = Get.put(LeadsController());
   final AuthController authController = Get.put(AuthController());
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +16,7 @@ class LeadsScreen extends StatelessWidget {
         'Leads List',
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
+            icon: const Icon(Icons.refresh, color: Colors.white),
             onPressed: leadsController.getLeads,
           ),
         ],
@@ -31,26 +27,88 @@ class LeadsScreen extends StatelessWidget {
         }
 
         if (leadsController.leadsList.isEmpty) {
-          return Center(child: Text('No leads available'));
+          return Center(
+            child: Text(
+              'No leads available',
+              style: TextStyle(fontSize: 18, color: Colors.grey),
+            ),
+          );
         }
 
         return ListView.builder(
           itemCount: leadsController.leadsList.length,
           itemBuilder: (context, index) {
             Leads lead = leadsController.leadsList.reversed.toList()[index];
-            return Card(
-              color: const Color.fromRGBO(17,79,143, 1),
-              margin: const EdgeInsets.all(7.0),
-              child: ListTile(
-                onTap: (){
-                  Get.to(LeadDetails(lead: lead,));
-                },
-                title: TextWidget(lead.name ?? 'No Name'),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextWidget("Email: ${lead.email ?? 'N/A'}"),
+            return GestureDetector(
+              onTap: () {
+                Get.to(LeadDetails(lead: lead));
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(width: 1),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 6,
+                      offset: Offset(0, 2),
+                    ),
                   ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Color.fromRGBO(17, 79, 143, 1),
+                        child: Text(
+                          lead.name?.substring(0, 1) ?? 'N',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              lead.name ?? 'No Name',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              "Email: ${lead.email ?? 'N/A'}",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              "Phone Number: ${lead.mobileNumber ?? 'N/A'}",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.grey,
+                        size: 16,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
